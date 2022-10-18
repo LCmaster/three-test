@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Canvas } from "@react-three/fiber";
-import "./App.css";
 
 function Box({ position, picked }) {
   const ref = useRef();
@@ -16,7 +15,7 @@ function Button({ children, clickHandler }) {
   return (
     <button
       onClick={clickHandler}
-      className="rounded-md bg-green-500 text-white border-2 border-green-100 px-4 py-2 basis-6/12"
+      className="rounded-md bg-green-500 text-white border-2 border-green-100 px-4 py-2 basis-3/12"
     >
       {children}
     </button>
