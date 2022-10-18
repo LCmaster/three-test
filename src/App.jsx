@@ -11,12 +11,34 @@ function Box({ position, picked }) {
   );
 }
 
+function Button({ children, clickHandler }) {
+  return (
+    <button
+      onClick={clickHandler}
+      className="rounded-md bg-green-500 text-white border-2 border-green-100 px-4 py-2 basis-full"
+    >
+      {children}
+    </button>
+  );
+}
+
 function App() {
   const [pickedIndex, pick] = useState(-1);
 
+  const pickNext = () => pick((prev) => (prev + 1) % boxPosition.length);
+  const pickRandom = () =>
+    pick((prev) => {
+      let randomIndex;
+      while (
+        (randomIndex = Math.floor(Math.random() * boxPosition.length)) === prev
+      );
+      return randomIndex;
+    });
+
   useEffect(() => {
     const handleKeyUp = (key) => {
-      if (key.code === "Space") pick((pickedIndex + 1) % boxPosition.length);
+      if (key.code === "Space") pickNext();
+      if (key.code === "Enter") pickRandom();
     };
     document.addEventListener("keyup", handleKeyUp);
     return () => {
@@ -27,11 +49,15 @@ function App() {
   const boxPosition = [];
   for (let j = 0; j < 4; j++) {
     for (let i = 0; i < 4; i++) {
-      boxPosition.push([-2 + i * 1.5, -2 + j * 1.5, 0]);
+      boxPosition.push([-2 + i * 1.5, 2 - j * 1.5, 0]);
     }
   }
   return (
-    <div className="App h-screen">
+    <div className="container mx-auto h-screen">
+      <div className="flex justify-center">
+        <Button clickHandler={pickNext}>Pick Next</Button>
+        <Button clickHandler={pickRandom}>Pick Random</Button>
+      </div>
       <Canvas>
         <ambientLight />
         <pointLight position={[10, 10, 10]} />
