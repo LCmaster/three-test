@@ -54,7 +54,7 @@ function App() {
     }
   }
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto h-screen">
       <div className="container flex justify-center absolute top-0 mx-auto z-10">
         <Button clickHandler={pickNext}>Pick Next</Button>
         <Button clickHandler={pickRandom}>Pick Random</Button>
