@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Canvas } from "@react-three/fiber";
+import "./App.css";
 
 function Box({ position, picked }) {
   const ref = useRef();
   return (
-    <mesh ref={ref} position={position} scale={picked ? 1.25 : 1}>
+    <mesh ref={ref} position={position} scale={picked ? 1 : 0.75}>
       <boxGeometry args={[1, 1, 1]} />
       <meshStandardMaterial color={picked ? "crimson" : "orange"} />
     </mesh>
@@ -49,16 +50,16 @@ function App() {
   const boxPosition = [];
   for (let j = 0; j < 4; j++) {
     for (let i = 0; i < 4; i++) {
-      boxPosition.push([-2 + i * 1.5, 2 - j * 1.5, 0]);
+      boxPosition.push([-2 + i * 1.25, 2 - j * 1.25, 0]);
     }
   }
   return (
-    <div className="container mx-auto h-screen">
-      <div className="flex justify-center">
+    <div className="container mx-auto">
+      <div className="container flex justify-center absolute top-0 mx-auto z-10">
         <Button clickHandler={pickNext}>Pick Next</Button>
         <Button clickHandler={pickRandom}>Pick Random</Button>
       </div>
-      <Canvas>
+      <Canvas className="z-0">
         <ambientLight />
         <pointLight position={[10, 10, 10]} />
         {boxPosition.map((pos, index) => (
