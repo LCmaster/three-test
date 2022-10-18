@@ -16,7 +16,7 @@ function Button({ children, clickHandler }) {
   return (
     <button
       onClick={clickHandler}
-      className="rounded-md bg-green-500 text-white border-2 border-green-100 px-4 py-2 basis-full"
+      className="rounded-md bg-green-500 text-white border-2 border-green-100 px-4 py-2 basis-6/12"
     >
       {children}
     </button>
